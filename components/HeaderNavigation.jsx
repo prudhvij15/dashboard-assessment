@@ -1,7 +1,6 @@
-"use client";
-import React, { useState } from "react";
+import React from "react";
 
-const NavigationButtons = () => {
+const NavigationButtons = ({ onButtonClick }) => {
   const buttons = [
     "General",
     "Security",
@@ -13,24 +12,13 @@ const NavigationButtons = () => {
     "Sharing",
   ];
 
-  const [selectedButton, setSelectedButton] = useState(null);
-
-  const handleButtonClick = (index) => {
-    setSelectedButton(index);
-  };
-
   return (
-    <div className="flex p-4 bg-gray-800">
+    <div className="flex p-0 bg-gray-800">
       {buttons.map((button, index) => (
         <button
           key={index}
-          className={`px-4 py-2 rounded-md mr-2 
-            ${
-              selectedButton === index
-                ? "bg-gray-300 text-gray-800"
-                : "bg-gray-800 text-gray-400 hover:bg-gray-300"
-            }`}
-          onClick={() => handleButtonClick(index)}
+          className="bg-gray-800 px-4 py-2 text-gray-400 rounded-md mr-2 hover:bg-gray-300"
+          onClick={() => onButtonClick(button)}
         >
           {button}
         </button>

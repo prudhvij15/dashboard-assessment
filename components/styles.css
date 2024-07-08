@@ -1,0 +1,4 @@
+/* styles/styles.css */
+.centered-content {
+  @apply flex justify-center  h-screen text-white;
+}
