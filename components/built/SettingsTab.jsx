@@ -1,6 +1,6 @@
 import React from "react";
 
-const NavigationButtons = ({ onButtonClick }) => {
+const SettingsTab = ({ onButtonClick }) => {
   const buttons = [
     "General",
     "Security",
@@ -13,11 +13,11 @@ const NavigationButtons = ({ onButtonClick }) => {
   ];
 
   return (
-    <div className="flex p-0 bg-gray-800">
+    <div className="flex flex-wrap p-4 bg-gray-800">
       {buttons.map((button, index) => (
         <button
           key={index}
-          className="bg-gray-800 px-4 py-2 text-gray-400 rounded-md mr-2 hover:bg-gray-300"
+          className="bg-gray-800 px-4 py-2 text-gray-400 rounded-md mr-2 mb-2 hover:bg-gray-700 sm:text-sm md:text-base lg:text-lg"
           onClick={() => onButtonClick(button)}
         >
           {button}
@@ -27,4 +27,4 @@ const NavigationButtons = ({ onButtonClick }) => {
   );
 };
 
-export default NavigationButtons;
+export default SettingsTab;

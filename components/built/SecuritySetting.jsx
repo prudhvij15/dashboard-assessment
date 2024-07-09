@@ -1,8 +1,19 @@
 "use client";
-import { useState } from "react";
-import { FaAngleRight, FaCheckCircle } from "react-icons/fa";
+import { useEffect, useState } from "react";
+import "react-circular-progressbar/dist/styles.css";
+import { FaCheckCircle } from "react-icons/fa";
+import CircleProgress from "./CircleProgress";
 
 const SecuritySettings = () => {
+  const [percentage, setPercentage] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setPercentage((prev) => (prev < 70 ? prev + 1 : 70));
+    }, 25);
+    return () => clearInterval(interval);
+  }, []);
+
   const initialSession = [
     {
       id: 1,
@@ -29,27 +40,44 @@ const SecuritySettings = () => {
       active: false,
     },
   ];
+
   const [twoStepVerification, setTwoStepVerification] = useState(true);
   const [sessions, setSessions] = useState(initialSession);
 
   const handleToggleTwoStep = () => {
     setTwoStepVerification(!twoStepVerification);
   };
+
   const handleSession = (id) => {
-    setSessions(sessions.filter((session) => session.id != id));
+    setSessions(sessions.filter((session) => session.id !== id));
   };
 
   return (
-    <div className="bg-gray-900 text-white p-8 rounded-lg w-full mx-auto">
-      <div className="flex justify-between items-center mb-6 bg-gray-700 h-20 rounded-md">
-        <div className="p-10 ml">
-          <h2 className="text-sm font-semibold">
-            Your account security is 90%
-          </h2>
-          <p className="text-sm">
-            Please review your account security settings regularly and update
-            your password{" "}
-          </p>
+    <div className="bg-gray-900 text-white p-2 sm:p-8 rounded-lg w-full mx-auto">
+      <div className="flex flex-col lg:flex-row justify-between items-center mb-6 bg-gray-700 p-4 lg:p-8 rounded-md">
+        <div className="flex flex-col sm:flex-row items-center">
+          <div
+            style={{
+              width: 50,
+              height: 50,
+              pathTransitionDuration: 0.5,
+              background: {
+                fill: "#3e98c7",
+              },
+            }}
+            className="text-red-600 mb-4 sm:mb-0 sm:mr-4"
+          >
+            <CircleProgress progress={percentage} radius={20} />
+          </div>
+          <div className="flex flex-col text-center sm:text-left ">
+            <h2 className="text-sm font-semibold">
+              Your account security is 90%
+            </h2>
+            <p className="text-sm">
+              Please review your account security settings regularly and update
+              your password.
+            </p>
+          </div>
         </div>
         <div className="flex justify-evenly p-4 gap-4">
           <button className="bg-gray-600 text-white py-2 px-4 rounded-lg">
@@ -60,19 +88,19 @@ const SecuritySettings = () => {
           </button>
         </div>
       </div>
+
       <div className="mb-6">
         <h3 className="text-md font-medium mb-2">Basics</h3>
         <div className="border-t-2 border-gray-500"></div>
-        <div className="flex justify-between items-center m-4">
-          <div className="flex-1">
-            <label className="flex-1">Password</label>
+        <div className="flex flex-col lg:flex-row justify-between items-center m-4">
+          <div className="flex-1 mb-4 lg:mb-0">
+            <label>Password</label>
             <p className="text-gray-400">
               Set a password to protect your account
             </p>
           </div>
-          <div className="flex-1  text-center">
+          <div className="flex-1 text-center mb-4 lg:mb-0">
             <div className="flex flex-row items-center gap-3">
-              {" "}
               <input
                 type="password"
                 value="***********"
@@ -92,15 +120,15 @@ const SecuritySettings = () => {
         <div className="border-b-2 border-gray-500"></div>
 
         <div className="mb-6">
-          <div className="flex justify-between items-center m-4">
-            <div className="flex-1">
-              <label className="flex-1">Two-step verification</label>
+          <div className="flex flex-col lg:flex-row justify-between items-center m-4">
+            <div className="flex-1 mb-4 lg:mb-0">
+              <label>Two-step verification</label>
               <p className="text-gray-400">
-                We recommend requiring a verification <br />
-                code in addition to your password
+                We recommend requiring a verification code in addition to your
+                password.
               </p>
             </div>
-            <div className="flex-1 flex items-center justify-center">
+            <div className="flex-1 flex items-center justify-center mb-4 lg:mb-0">
               <label
                 htmlFor="toggle"
                 className={`relative block w-12 h-6 bg-gray-600 rounded-full cursor-pointer ${
@@ -124,6 +152,7 @@ const SecuritySettings = () => {
           </div>
         </div>
       </div>
+
       <div>
         <h3 className="text-md font-medium mb-2">Browsers and devices</h3>
         <p className="mb-4">
@@ -134,11 +163,13 @@ const SecuritySettings = () => {
           {sessions.map((session) => (
             <li
               key={session.id}
-              className="flex items-center justify-between bg-gray-800 p-4 rounded-md mb-2"
+              className="flex flex-col lg:flex-row items-center justify-between bg-gray-800 p-4 rounded-md mb-2"
             >
-              <span>{session.browser}</span>
-              <span>{session.location}</span>
-              <span>{session.active ? "Current session" : "1 month ago"}</span>
+              <span className="mb-2 lg:mb-0">{session.browser}</span>
+              <span className="mb-2 lg:mb-0">{session.location}</span>
+              <span className="mb-2 lg:mb-0">
+                {session.active ? "Current session" : "1 month ago"}
+              </span>
               <button
                 className="bg-red-600 text-white py-1 px-2 rounded-lg"
                 onClick={() => handleSession(session.id)}

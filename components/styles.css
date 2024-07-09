@@ -2,3 +2,25 @@
 .centered-content {
   @apply flex justify-center  h-screen text-white;
 }
+
+/* Global CSS file (e.g., styles/globals.css) */
+#progress {
+  width: 100%;
+  height: 5px;
+
+  background-color: yellow; /* Background of the whole progress bar */
+}
+
+/* Chrome, Safari, and Edge */
+#progress::-webkit-progress-bar {
+  background-color: #4b5563; /* Tailwind gray-700 */
+}
+
+#progress::-webkit-progress-value {
+  background-color: white; /* Color of the progress value */
+}
+
+/* Firefox */
+#progress::-moz-progress-bar {
+  background-color: white; /* Color of the progress value */
+}
