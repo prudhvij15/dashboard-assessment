@@ -2,7 +2,7 @@
 import Link from "next/link";
 import {
   FaAllergies,
-  FaDharmachakra,
+  FaAngleRight,
   FaFolder,
   FaHome,
   FaInvision,
@@ -87,7 +87,19 @@ const SideBar = ({ isOpen, toggleSidebar }) => {
             Settings
           </Link>
         </nav>
+        <div className="p-3">
+          <div className="flex  justify-between">
+            <h4>File Browsers</h4>
+          </div>
+          <div className="m-2  items-center flex gap-3">
+            <button className="flex items-center gap-3 ">
+              <FaAngleRight />
+              <h3 className="font-semibold">Folders</h3>
+            </button>
+          </div>
+        </div>
       </div>
+
       <div className="bg-gray-700 p-2 m-2 rounded-md">
         <div className="flex justify-between m-1">
           <h4>Storage</h4>

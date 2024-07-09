@@ -1,18 +1,21 @@
 "use client";
 import React, { useState } from "react";
-import { FaBars, FaPlus, FaSearch } from "react-icons/fa";
-
-import Image from "next/image";
-import profilePic from "../..//public/assests/profile.png";
-import SecuritySettings from "./SecuritySetting";
-import GeneratPage from "../GeneratPage";
-import Billing from "../Billing";
-import Notifications from "../Notifications";
-import Apps from "../Apps";
-import Branding from "../Branding";
-import Refer from "../Refer";
-import Sharing from "../Sharing";
-import SettingsTab from "./SettingsTab";
+import {
+  SecuritySettings,
+  GeneratPage,
+  Billing,
+  Notifications,
+  Apps,
+  Branding,
+  Refer,
+  Sharing,
+  SettingsTab,
+  Image,
+  profilePic,
+  FaBars,
+  FaPlus,
+  FaSearch,
+} from "./index";
 
 const Header = ({ toggleSidebar }) => {
   const [selectedSection, setSelectedSection] = useState("Security");
@@ -65,7 +68,7 @@ const Header = ({ toggleSidebar }) => {
                 className="pl-8 pr-4 py-2 bg-gray-700 rounded-md text-white placeholder-gray-400"
               />
             </div>
-            <button className="bg-gray-500 flex items-center px-4 py-2 rounded-md">
+            <button className="bg-gray-500 flex justify-center px-4 py-2 rounded-md">
               <FaPlus className="mr-2" />
               Invite
             </button>
@@ -73,7 +76,7 @@ const Header = ({ toggleSidebar }) => {
               Upgrade
             </button>
           </div>
-          <div className="w-10 h-10 bg-gray-400 rounded-full ml-4 overflow-hidden">
+          <div className="w-10 h-10 bg-gray-400 rounded-full ml-4 overflow-hidden  hidden lg:block">
             <Image
               src={profilePic}
               alt="Profile Picture"
