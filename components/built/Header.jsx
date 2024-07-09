@@ -68,7 +68,7 @@ const Header = ({ toggleSidebar }) => {
                 className="pl-8 pr-4 py-2 bg-gray-700 rounded-md text-white placeholder-gray-400"
               />
             </div>
-            <button className="bg-gray-500 flex justify-center px-4 py-2 rounded-md">
+            <button className="bg-gray-500 flex justify-center  items-center px-4 py-2 rounded-md">
               <FaPlus className="mr-2" />
               Invite
             </button>
